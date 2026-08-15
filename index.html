@@ -3,31 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow, noarchive">
-<title>Sprint 105 · SIDAGO 04/08–17/08 · Agrodefesa</title>
+<title>Sprint 105 + Urgentes · SIDAGO 04/08–17/08 · Agrodefesa</title>
 <style>
   :root{
     --bg:#f7f8fa; --card:#fff; --ink:#172b4d; --muted:#6b778c; --line:#e4e7ec;
-    --done:#36b37e; --valid:#6554c0; --doing:#0065ff; --todo:#c1c7d0;
+    --done:#36b37e; --valid:#6554c0; --doing:#0065ff; --todo:#c1c7d0; --urg:#de350b;
   }
   *{box-sizing:border-box}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--ink);margin:0;padding:28px}
   h1{font-size:22px;margin:0 0 4px}
-  h2{font-size:15px;margin:26px 0 10px}
+  h2{font-size:15px;margin:0 0 10px}
   .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
-  .cards{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  .cards{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
   .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 18px;min-width:130px}
   .kpi b{font-size:24px;display:block}
   .kpi span{font-size:12px;color:var(--muted)}
   .panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px}
   .legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin:6px 0 14px;flex-wrap:wrap}
   .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
-  .row{display:grid;grid-template-columns:190px 1fr 46px;align-items:center;gap:10px;margin:7px 0;font-size:13px}
+  .row{display:grid;grid-template-columns:210px 1fr 66px;align-items:center;gap:10px;margin:7px 0;font-size:13px}
   .bar{display:flex;height:18px;border-radius:4px;overflow:hidden;background:#f1f2f4}
   .bar div{height:100%}
   .n{color:var(--muted);text-align:right;font-size:12px}
   .seg-done{background:var(--done)} .seg-valid{background:var(--valid)}
   .seg-doing{background:var(--doing)} .seg-todo{background:var(--todo)}
-  .urgent-note{background:#e3fcef;border:1px solid #abf5d1;color:#006644;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:14px}
+  .seg-spr{background:#0065ff} .seg-urg{background:var(--urg)}
+  .note{border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:14px}
+  .note.red{background:#ffebe6;border:1px solid #ffbdad;color:#bf2600}
+  .note.gray{background:#f4f5f7;border:1px solid var(--line);color:var(--muted)}
   table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--card)}
   th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line)}
   th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px}
@@ -37,12 +40,13 @@
 </style>
 </head>
 <body>
-<h1>Sprint 105</h1>
-<div class="sub">Nome no Jira: "SIDAGO - Sprint 04/08 a 17/08" · Jira Agrodefesa (SIDAGO - SCRUM) · Período: <b>04/08/2026 → 17/08/2026</b> · Snapshot em 14/08/2026</div>
+<h1>Sprint 105 + Urgentes do período</h1>
+<div class="sub">Nome no Jira: "SIDAGO - Sprint 04/08 a 17/08" · Jira Agrodefesa (SIDAGO) · Período: <b>04/08/2026 → 17/08/2026</b> · Snapshot em 14/08/2026 · v2 (corrigido)</div>
 
 <div class="cards" id="kpis"></div>
 
-<div class="urgent-note"><b>Urgência:</b> nenhuma tarefa urgente na sprint — todas as 56 tarefas estão com prioridade <b>Low</b>. (Os itens marcados como "Urgente" no Jira estão no quadro Kanban, fora desta sprint.)</div>
+<div class="note red"><b>Urgentes:</b> além das 56 tarefas da sprint, <b>45 tarefas urgentes</b> (épico URGENTE, fluxo Kanban — fora da sprint) foram trabalhadas no período, das quais <b>38 concluídas</b>. A v1 deste painel considerava apenas a sprint, por isso os urgentes não apareciam.</div>
+<div class="note gray"><b>Sobre a contagem por pessoa:</b> os gráficos "por responsável" usam o responsável <i>atual</i> de cada tarefa no Jira. Como as tarefas trocam de responsável ao longo do fluxo (dev → revisão → QA), quem atua movimentando tarefas de outros (ex.: Edilson) fica subrepresentado nesse corte. O gráfico "Tarefas avançadas por pessoa" abaixo corrige isso: conta quem efetivamente moveu cada tarefa adiante a partir de "Em Andamento" no período.</div>
 
 <div class="legend">
   <span><i class="seg-done"></i>Concluída</span>
@@ -51,12 +55,23 @@
   <span><i class="seg-todo"></i>A fazer (Para Fazer/Pendente)</span>
 </div>
 
-<div class="panel"><h2 style="margin-top:0">Progresso por domínio / área</h2><div id="byDomain"></div></div>
-<div class="panel"><h2 style="margin-top:0">Progresso por pessoa</h2><div id="byPerson"></div></div>
-<div class="panel"><h2 style="margin-top:0">Todas as tarefas (56)</h2>
-<table><thead><tr><th>Chave</th><th>Resumo</th><th>Domínio</th><th>Prioridade</th><th>Responsável</th><th>Status</th></tr></thead><tbody id="tbody"></tbody></table>
+<div class="panel"><h2>Tarefas avançadas por pessoa no período (sprint × urgente)</h2>
+<div class="legend"><span><i class="seg-spr"></i>Sprint</span><span><i class="seg-urg"></i>Urgente (Kanban)</span></div>
+<div id="byWorked"></div>
+<div class="n" style="text-align:right">critério: moveu a tarefa a partir de "Em Andamento" entre 04/08 e 17/08 (API: status CHANGED FROM ... BY). Devs cujas tarefas são movidas por terceiros não pontuam aqui — ver gráficos por responsável.</div>
 </div>
-<div class="foot">Domínio/área derivado do épico e de palavras-chave do resumo. Fonte: REST API do Jira (sprint 222, board SIDAGO - SCRUM).</div>
+
+<div class="panel"><h2>Sprint · progresso por domínio / área</h2><div id="byDomain"></div></div>
+<div class="panel"><h2>Sprint · progresso por responsável atual</h2><div id="byPerson"></div></div>
+<div class="panel"><h2>Urgentes (Kanban) · progresso por responsável atual</h2><div id="byPersonUrg"></div></div>
+
+<div class="panel"><h2>Tarefas da sprint (56)</h2>
+<table><thead><tr><th>Chave</th><th>Resumo</th><th>Domínio</th><th>Urgência</th><th>Responsável</th><th>Status</th></tr></thead><tbody id="tbody"></tbody></table>
+</div>
+<div class="panel"><h2>Tarefas urgentes trabalhadas no período (45)</h2>
+<table><thead><tr><th>Chave</th><th>Resumo</th><th>Urgência</th><th>Responsável</th><th>Status</th></tr></thead><tbody id="tbodyU"></tbody></table>
+</div>
+<div class="foot">Domínio/área derivado do épico e de palavras-chave do resumo. Fontes: REST API do Jira — sprint 222 (board SIDAGO - SCRUM) e épico URGENTE (SID-9784) com mudança de status entre 04/08 e 17/08. Nenhum trabalho registrado em outros projetos (GP, TF, SIDS, MDEDDV) no período.</div>
 
 <script>
 const T=[
@@ -117,6 +132,65 @@ const T=[
 ["SID-24072","Termo de Coleta de Amostra de Sementes - Atualizações","Gabriel Xavier","Concluída"],
 ["SID-24073","Relatório de Status de Amostra de Sementes - Parte 02","Gabriel Xavier","Concluída"]
 ];
+const U=[
+["SID-24144","Webservice Recebimento Embalagens - Verificação de Documentação","Edilson Borges","Em Andamento"],
+["SID-24143","GTA de Saída do Leilão - Saldo Negativo do Produtor","Gabriel Xavier","Concluída"],
+["SID-24139","GTA de Passeriformes - Erro ao Emitir GTA","Edilson Borges","Qualidade"],
+["SID-24138","Inserção de Fiscais em TF","Maria Luisa","Concluída"],
+["SID-24137","Erro Emissão GTA - Comunicação GTA","Maria Luisa","Revisando"],
+["SID-24136","APP - Emissão de Nota Fiscal","Ricardo Pulice","Para Fazer"],
+["SID-24132","Inserção de Fiscais em TF","Maria Luisa","Concluída"],
+["SID-24131","Cadastro de Empresa (CPF) - Porte de Empresa","Aisha Rocha","Concluída"],
+["SID-24130","APP - QRCode Compartilhamento - Inclusão de Informações","Gabriel Tarozzo","Refatoração"],
+["SID-24128","Cadastro de Propriedade - Erro ao Cadastrar","Gabriel Xavier","Concluída"],
+["SID-24126","Auditoria de atividades do servidor no SIDAGO – ano de 2026","Pedro José","Qualidade"],
+["SID-24125","Estorno - DARE","Maria Luisa","Concluída"],
+["SID-24124","PGA - Verificar Cadastro Produtor","Gabriel Xavier","Concluída"],
+["SID-24121","Termo de Fiscalização - Adicionar Acompanhante","Aisha Rocha","Concluída"],
+["SID-24119","GTA - Erro - Expresso","Gabriel Carneiro","Concluída"],
+["SID-24117","QA - Importação de Planilhas - Cadastro de Animais","Gabriel Xavier","Concluída"],
+["SID-24116","SQL - Dados de Confinamento","Gabriel Xavier","Concluída"],
+["SID-24115","Auto de Infração - Geração de Boleto","Aisha Rocha","Concluída"],
+["SID-24114","Emissão de GTA - Procurador","Aisha Rocha","Concluída"],
+["SID-24113","Baso - Controle de Impressão/Permissões","Gabriel Xavier","Concluída"],
+["SID-24108","Inserção de Fiscais em TF","Maria Luisa","Concluída"],
+["SID-24106","Atualizar Branch - SIDAGO 5","Gabriel Carneiro","Concluída"],
+["SID-24103","APP - Emissão de GTA - Não Localiza o Destino","Gabriel Xavier","Concluída"],
+["SID-24101","Defesa Animal - NFe GTA","Gabriel Carneiro","Concluída"],
+["SID-24096","GTA - Animais Silvestre","Gabriel Carneiro","Concluída"],
+["SID-24094","Inserção de Fiscais em TF","Maria Luisa","Concluída"],
+["SID-24093","Emissão de NFe - Erro 233","Aisha Rocha","Concluída"],
+["SID-24092","Emissão de GTA Ovinos e Caprinos - Servidores Adm","Aisha Rocha","Concluída"],
+["SID-24091","Produtor Interestadual - Análise da Consulta de Cadastro","Gabriel Xavier","Concluída"],
+["SID-24089","Protocolo de NF não encontrado Junto à Economia","Ricardo Pulice","Concluída"],
+["SID-24088","Emissão de GTA Ovinos e Caprinos - Servidores Adm","Aisha Rocha","Concluída"],
+["SID-24087","Recebimento de Sementes - Nº do TCA - Termo de Coleta","Gabriel Xavier","Concluída"],
+["SID-24085","Relatório de Notas Fiscais - Erro ao Gerar","Gabriel Carneiro","Concluída"],
+["SID-24084","Erro - Não foi possível consultar sequence","Gabriel Carneiro","Concluída"],
+["SID-24083","Termo de Fiscalização - Erro na Abertura","Gabriel Xavier","Concluída"],
+["SID-24080","Baso - Listagem com Erro","Gabriel Xavier","Concluída"],
+["SID-24079","CIS-C - Erro no Lançamento","Gabriel Xavier","Concluída"],
+["SID-24076","SIDAGO 5 - Termo de Fiscalização","Gabriel Carneiro","Concluída"],
+["SID-24075","Vacinação Brucelose - Lançamento por Fiscal com Pendência","Aisha Rocha","Concluída"],
+["SID-24069","SQL - Movimentações Interestaduais","Aisha Rocha","Concluída"],
+["SID-24066","Recursos Humanos - Funcionários","Aisha Rocha","Concluída"],
+["SID-24057","Auto de Infração - Reabertura de Dare","Maria Luisa","Concluída"],
+["SID-24037","Emissão de GTA de Equídeos - Erro","Aisha Rocha","Concluída"],
+["SID-24004","SQL - GTAS Interestaduais","Gabriel Xavier","Concluída"],
+["SID-23900","Junção de Branchs - Apresentação para Diretorias","Gabriel Xavier","Revisado"]
+];
+// tarefas avançadas por pessoa no período: [pessoa, sprint, urgente]
+const W=[
+["Edilson Borges",6,9],
+["Ricardo Pulice",3,9],
+["Pedro José",9,4],
+["Murilo de Sousa",4,6],
+["Elismar Eldor",3,4],
+["Ely Frank",4,2],
+["Daired Almeida",4,0],
+["Elton Santome",2,0],
+["Gabriel Tarozzo",0,2]
+];
 function domain(s){
   const x=s.toLowerCase();
   if(/^ ?\[?app|ambas as lojas/.test(x)) return "App Mobile";
@@ -136,30 +210,44 @@ function grp(st){
 }
 const G={done:"Concluída",valid:"Em validação",doing:"Em andamento",todo:"A fazer"};
 const data=T.map(([k,s,a,st])=>({k,s,a,st,d:domain(s),g:grp(st)}));
+const urgData=U.map(([k,s,a,st])=>({k,s,a,st,g:grp(st)}));
 
 // KPIs
-const tot=data.length, done=data.filter(x=>x.g==="done").length,
- valid=data.filter(x=>x.g==="valid").length, doing=data.filter(x=>x.g==="doing").length,
- todo=data.filter(x=>x.g==="todo").length;
+const tot=data.length, done=data.filter(x=>x.g==="done").length;
+const utot=urgData.length, udone=urgData.filter(x=>x.g==="done").length;
 document.getElementById("kpis").innerHTML=[
- [tot,"tarefas na sprint"],[done+` (${Math.round(done/tot*100)}%)`,"concluídas"],
- [valid,"em validação"],[doing,"em andamento"],[todo,"a fazer"],["0","urgentes (todas Low)"]
+ [tot+utot,"tarefas no período (sprint + urgentes)"],
+ [tot,"na sprint"],[done+` (${Math.round(done/tot*100)}%)`,"sprint concluídas"],
+ [utot,"urgentes (Kanban)"],[udone+` (${Math.round(udone/utot*100)}%)`,"urgentes concluídas"]
 ].map(([b,s])=>`<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join("");
 
-function stacked(el,keyFn){
+function stacked(el,arr,keyFn){
   const m={};
-  data.forEach(x=>{const k=keyFn(x);(m[k]=m[k]||{done:0,valid:0,doing:0,todo:0,n:0});m[k][x.g]++;m[k].n++;});
+  arr.forEach(x=>{const k=keyFn(x);(m[k]=m[k]||{done:0,valid:0,doing:0,todo:0,n:0});m[k][x.g]++;m[k].n++;});
   const rows=Object.entries(m).sort((a,b)=>b[1].n-a[1].n).map(([k,v])=>{
     const seg=g=>v[g]?`<div class="seg-${g}" style="width:${v[g]/v.n*100}%" title="${G[g]}: ${v[g]}"></div>`:"";
     return `<div class="row"><div>${k}</div><div class="bar">${seg("done")}${seg("valid")}${seg("doing")}${seg("todo")}</div><div class="n">${v.done}/${v.n}</div></div>`;
   }).join("");
   document.getElementById(el).innerHTML=rows+`<div class="n" style="text-align:right;margin-top:4px">concluídas / total</div>`;
 }
-stacked("byDomain",x=>x.d);
-stacked("byPerson",x=>x.a);
+stacked("byDomain",data,x=>x.d);
+stacked("byPerson",data,x=>x.a);
+stacked("byPersonUrg",urgData,x=>x.a);
+
+// worked chart
+const maxW=Math.max(...W.map(([,s,u])=>s+u));
+document.getElementById("byWorked").innerHTML=W.sort((a,b)=>(b[1]+b[2])-(a[1]+a[2])).map(([p,s,u])=>{
+  const w=(s+u)/maxW*100;
+  return `<div class="row"><div>${p}</div><div class="bar" style="width:${w}%;background:transparent">`+
+    (s?`<div class="seg-spr" style="width:${s/(s+u)*100}%" title="Sprint: ${s}"></div>`:"")+
+    (u?`<div class="seg-urg" style="width:${u/(s+u)*100}%" title="Urgente: ${u}"></div>`:"")+
+    `</div><div class="n">${s}+${u}=${s+u}</div></div>`;
+}).join("")+`<div class="n" style="text-align:right;margin-top:4px">sprint + urgente = total avançadas</div>`;
 
 document.getElementById("tbody").innerHTML=data.map(x=>
- `<tr><td>${x.k}</td><td>${x.s}</td><td>${x.d}</td><td>Low</td><td>${x.a}</td><td><span class="pill p-${x.g}">${x.st}</span></td></tr>`).join("");
+ `<tr><td>${x.k}</td><td>${x.s}</td><td>${x.d}</td><td>Normal (Low)</td><td>${x.a}</td><td><span class="pill p-${x.g}">${x.st}</span></td></tr>`).join("");
+document.getElementById("tbodyU").innerHTML=urgData.map(x=>
+ `<tr><td>${x.k}</td><td>${x.s}</td><td><b style="color:var(--urg)">URGENTE</b></td><td>${x.a}</td><td><span class="pill p-${x.g}">${x.st}</span></td></tr>`).join("");
 </script>
 </body>
 </html>
